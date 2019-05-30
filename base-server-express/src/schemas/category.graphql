@@ -1,0 +1,24 @@
+type Category {
+   id:ID,
+   pk:String,
+   categoryType: String,
+   code: String,
+   value: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String
+}
+
+extend type Mutation {
+   insertCategory(categoryType: String!, code: String, value: String): Category,
+   updateCategoryByPK(pk: String!, categoryType: String!, code: String, value: String,dataStatus: String): Category,
+   deleteCategoryByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllCategory: [Category],
+   getByPKCategory(pk: String!): Category,
+   getByDataStatusCategory(dataStatus: String!): [Category],
+   searchCategory(code: String, categoryType: String): [Category],
+   getByCategoryTypeCategory(categoryType: String!): [Category],
+}

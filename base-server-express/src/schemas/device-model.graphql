@@ -1,0 +1,23 @@
+type DeviceModel {
+   id:ID,
+   pk:String,
+   modelName: String,
+   commonName: String,
+   commonNameDetail: Category,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String
+}
+
+extend type Mutation {
+   insertDeviceModel(modelName: String!, commonName: String!): DeviceModel,
+   updateDeviceModelByPK(pk: String!, commonName: String!, modelName: String!, dataStatus: String): DeviceModel,
+   deleteDeviceModelByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllDeviceModel: [DeviceModel],
+   getByPKDeviceModel(pk: String!): DeviceModel,
+   getByDataStatusDeviceModel(dataStatus: String!): [DeviceModel],
+   searchDeviceModel(commonName: String, modelName: String):[DeviceModel]
+}

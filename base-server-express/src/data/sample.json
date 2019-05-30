@@ -1,0 +1,25 @@
+[
+{
+    "default": {
+      "code": "1",
+      "codeHuyen": "1",
+      "codeTinh": "HN",
+      "fullName": "Quận Hoàn Kiếm, Hà Nội",
+      "ggMappedName": true,
+      "ggMatched": true,
+      "ggName": "Hoàn Kiếm",
+      "gg_formatted_address": "Hoàn Kiếm, Hanoi, Vietnam",
+      "huyen": "Hoàn Kiếm",
+      "huyenKhongDau": "hoan-kiem",
+      "pk": "Place_H_1",
+      "nameKhongDau": "hoan-kiem",
+      "parentId": "Place_T_HN",
+      "placeName": "Hoàn Kiếm",
+      "placeType": "H",
+      "pre": "Quận",
+      "tinh": "Hà Nội",
+      "tinhKhongDau": "ha-noi",
+      "type": "Place"
+    }
+  }
+]

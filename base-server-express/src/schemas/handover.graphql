@@ -1,0 +1,62 @@
+type Handover {
+   id:ID,
+   pk:String,
+   issueDate: Int,
+   handoverAddress: String,
+   handoverPlace: String,
+   handoverPlaceDetail: Location,
+   agentPK: String,
+   agentDetail: Agent,
+   customerPK: String,
+   customerDetail: Customer,
+   note: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+   operator: String,
+   operatorDetail: User,
+   handoverDetails: [HandoverDetail]
+}
+
+input ModifyHandoverDetail {
+   itemPK: String!,
+   quantity: Int!,
+   note: String
+}
+
+input InsertInput {
+   issueDate: Int!,
+   handoverAddress: String,
+   handoverPlace: String,
+   agentPK: String!,
+   customerPK: String!,
+   note: String,
+   dataStatus: String,
+   operator: String!,
+   handoverDetails: [ModifyHandoverDetail]!
+}
+
+input UpdateInput {
+   pk: String!,
+   issueDate: Int!,
+   handoverAddress: String,
+   handoverPlace: String,
+   agentPK: String!,
+   customerPK: String!,
+   note: String,
+   dataStatus: String,
+   operator: String!,
+   handoverDetails: [ModifyHandoverDetail]!
+}
+
+extend type Mutation {
+   insertHandover(input: InsertInput!): Handover,
+   updateHandoverByPK(input: UpdateInput!): Handover,
+   deleteHandoverByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllHandover: [Handover],
+   getByPKHandover(pk: String!): Handover,
+   getByDataStatusHandover(dataStatus: String!): [Handover]
+}
