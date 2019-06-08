@@ -1,2 +1,2 @@
-# Privare Project
+# Private Project
 | Only me :)
