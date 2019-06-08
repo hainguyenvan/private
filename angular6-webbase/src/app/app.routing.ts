@@ -1,23 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-const routes: Routes = [
-  // home page
-  {
-    path: '',
-    loadChildren: './pages/home/home.module#HomeModule'
-  },
+import { ClientRoutes } from './pages/client/client.routing';
+import { AdminRoutes } from './pages/admin/admin.routing';
 
-  {
-    path: 'home-page',
-    loadChildren: './pages/home/home.module#HomeModule'
-  },
-];
+const routesClient: Routes = ClientRoutes;
+const routesAdmin: Routes = AdminRoutes;
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-  })],
+  imports: [
+    RouterModule.forRoot(routesClient, {
+      preloadingStrategy: PreloadAllModules
+    }),
+    RouterModule.forRoot(routesAdmin, {
+      preloadingStrategy: PreloadAllModules
+    })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRouting { }
