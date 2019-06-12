@@ -6,3 +6,13 @@ services:
     container_name: "redis"
     ports:
       - 6379:6379
+
+  mongo:
+    image: mongo:4.0.10-xenial
+    container_name: "mongo"
+    # environment:
+    #   # provide your credentials here
+    #   - MONGO_INITDB_ROOT_USERNAME=root
+    #   - MONGO_INITDB_ROOT_PASSWORD=pwd
+    ports:
+      - 27017:27017
