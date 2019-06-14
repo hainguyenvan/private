@@ -10,4 +10,8 @@ router.get('/', function (req, res) {
 
 require('./user')(router);
 
+require('./room')(router);
+
+require('./messages')(router);
+
 module.exports = router;
