@@ -13,11 +13,6 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 
-// Middleware to catch 404 errors
-// app.use(function (req, res, next) {
-//     res.status(404).sendFile(process.cwd() + '/views/404.html');
-// });
-
 // create socket io
 const { createSocketIO } = require('./socket.io/socket-io');
 createSocketIO();

@@ -294,7 +294,7 @@ ul {
   float: right;
   text-transform: uppercase;
   outline: 0;
-  background: #86BB71;
+  /* background: #86BB71; */
   border: 0;
   padding: 15px;
   color: #FFFFFF;

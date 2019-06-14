@@ -6,8 +6,9 @@ exports.isUsername = function (req, res, next) {
         .then(data => {
             if (data !== null) {
                 res.send({
-                    status: 400,
-                    msg: 'username invalid.'
+                    status: 200,
+                    msg: 'successfully',
+                    data: data
                 });
                 return;
             }

@@ -8,21 +8,21 @@ const router = express.Router();
 //     });
 // });
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 	res.render('login.html');
 });
 
-router.get('/rooms-list', function(req, res, next) {
+router.get('/rooms-list', function (req, res, next) {
 	res.render('rooms.html');
 });
 
-router.get('/chatroom', function(req, res, next) {
+router.get('/chatroom', function (req, res, next) {
 	res.render('chatroom.html');
 });
 
 require('./account')(router);
 
-// require('./room')(router);
+require('./rooms')(router);
 
 // require('./messages')(router);
 

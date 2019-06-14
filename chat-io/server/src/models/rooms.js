@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
 const connect = require('../connect');
+const MembersModel = require('./members');
 
 class RoomsModel {
     constructor() {
@@ -38,7 +39,7 @@ class RoomsModel {
         return new Promise((fulfill, reject) => {
             data.timeCreated = new Date().getTime();
             data.timeModified = new Date().getTime();
-            this.model.create(account)
+            this.model.create(data)
                 .then(data => {
                     fulfill(data);
                 })
@@ -56,9 +57,18 @@ class RoomsModel {
                 type: this.sequelize.QueryTypes.SELECT
             }).then(sourceList => {
                 if (sourceList.length > 0) {
-                    fulfill(sourceList[0]);
+                    MembersModel.getMembersByRoomPK(pk)
+                        .then(members => {
+                            let room = sourceList[0];
+                            room.members = members;
+                            fulfill(room);
+                        })
+                        .catch(err => {
+                            reject(err);
+                        })
+                } else {
+                    fulfill({});
                 }
-                fufill({});
             }).catch(err => {
                 console.log(err);
                 reject(err)

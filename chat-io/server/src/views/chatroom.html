@@ -8,13 +8,13 @@
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 </head>
 
-<body>
+<body ng-app="myAppChatroom" ng-controller="myCtrlChatroom" ng-init="init()">
   <div class="container clearfix">
     <div class="chat">
       <div class="chat-header clearfix">
         <img src="https://pbs.twimg.com/profile_images/786875117812998144/H7h6iY9D_400x400.jpg" alt="avatar">
         <div class="chat-about">
-          <div class="chat-room">test 101</div>
+          <div class="chat-room">{{user.username}}</div>
           <div class="chat-num-users"> User(s)</div>
         </div>
         <i class="fa fa-users"></i>
@@ -39,16 +39,16 @@
     </div> <!-- end chat -->
 
     <div class="controls">
-      <a href="" class="logout-btn">Logout</a>
-      <a href="" class="rooms-btn">Rooms</a>
+      <!-- <a href="" class="logout-btn">Logout</a> -->
+      <a href="" class="rooms-btn">Rooms: {{room.name}}</a>
     </div>
 
     <div class="users-list">
       <ul class="list">
-        <li class="clearfix" id="user-5d02fb38e528d31b08945191">
+        <li class="clearfix" ng-repeat="user in room.members">
           <img src="img/user.jpg" alt="hainv11">
           <div class="about">
-            <div class="name">hainv11</div>
+            <div class="name">{{user.username}}</div>
             <div class="status"><i class="fa fa-circle online"></i> online</div>
           </div>
         </li>
@@ -56,6 +56,8 @@
     </div>
   </div> <!-- end container -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

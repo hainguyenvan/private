@@ -29,14 +29,14 @@
       </div> <!-- end room-header -->
 
       <div class="room-create clearfix" style="border-bottom: 2px solid white;">
-        <input type="text" name="title" autofocus placeholder="Type a new room">
-        <button>Create</button>
+        <input type="text" name="title" autofocus placeholder="Type a new room" ng-model="roomName">
+        <button ng-click="onCreateRoom()">Create</button>
       </div> <!-- end room-create -->
 
       <div class="room-list">
         <ul>
-          <a href="">
-            <li class="room-item">test1</li>
+          <a ng-repeat="room in roomsList" href="" ng-click="onClickChatRoom(room.pk)">
+            <li class="room-item">{{room.name}}</li>
           </a>
         </ul>
       </div> <!-- end room-list -->
