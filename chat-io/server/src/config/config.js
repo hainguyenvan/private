@@ -10,10 +10,10 @@ const Config = {
     PORT_SOCKET_IO: 3001,
 
     // dev db
-    HOST_DB: '172.104.167.189',
-    NAME_DB: 'vietmed',
+    HOST_DB: 'localhost',
+    NAME_DB: 'chatio',
     PROTOCOL_DB: 'mysql',
-    PORT_DB: '9906',
+    PORT_DB: '3306',
     USERNAME_DB: 'root',
     PASSWD_DB: 'pwd',
 }

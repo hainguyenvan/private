@@ -1,18 +1,33 @@
 version: '2'
 
 services:
-  redis:
-    image: redis:5.0.5-alpine
-    container_name: "redis"
-    ports:
-      - 6379:6379
 
-  mongo:
-    image: mongo:4.0.10-xenial
-    container_name: "mongo"
-    # environment:
-    #   # provide your credentials here
-    #   - MONGO_INITDB_ROOT_USERNAME=root
-    #   - MONGO_INITDB_ROOT_PASSWORD=pwd
+  # mysql
+  mysql:
+    image: mysql:5.7.21
+    volumes_from:
+      - mysql-data
     ports:
-      - 27017:27017
+      - "3306:3306"
+    container_name: "mysql-app"
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+ 
+  # mysql data
+  mysql-data:
+    image: mysql:5.7.21
+    container_name: "mysql-data-app"
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+    command: "true"
+  
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin-app"
+    ports:
+      - 8084:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql

@@ -8,7 +8,7 @@
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
 </head>
 
-<body>
+<body ng-app="myAppRoomsList" ng-controller="myCtrlRoomsList" ng-init="init()">
 
   <div class="container clearfix" style="width: 500px;">
     <div class="controls" style="border: none; width: 100%;">
@@ -19,7 +19,7 @@
       <div class="room-header clearfix">
         <div class="room-about">
           <div class="room-title">Username</div>
-          <div class="room-num-rooms">hainv</div>
+          <div class="room-num-rooms">{{user.username}}</div>
         </div>
         <!-- <div class="room-about">
           <div class="room-title">Rooms</div>
@@ -44,9 +44,8 @@
 
   </div> <!-- end container -->
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-  <!-- <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/main.js"></script>
-    <script>$(function(){app.rooms()});</script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

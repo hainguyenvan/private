@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 	res.render('login.html');
 });
 
-router.get('/roomsList', function(req, res, next) {
+router.get('/rooms-list', function(req, res, next) {
 	res.render('rooms.html');
 });
 
@@ -20,10 +20,10 @@ router.get('/chatroom', function(req, res, next) {
 	res.render('chatroom.html');
 });
 
-require('./user')(router);
+require('./account')(router);
 
-require('./room')(router);
+// require('./room')(router);
 
-require('./messages')(router);
+// require('./messages')(router);
 
 module.exports = router;
