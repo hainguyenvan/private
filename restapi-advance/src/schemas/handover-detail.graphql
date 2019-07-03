@@ -1,0 +1,14 @@
+type HandoverDetail {
+   id:ID,
+   pk:String,
+   handoverPK: String,
+   itemPK: String,
+   itemType: String,
+   deviceDetail: Device,
+   materialDetail: Material,
+   quantity: Int!,
+   note: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+}

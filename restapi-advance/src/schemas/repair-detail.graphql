@@ -1,0 +1,20 @@
+type RepairDetail {
+   id:ID,
+   pk:String,
+   repairPK: String,
+   errorContent: String,
+   solution: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+   price: String
+}
+
+extend type Mutation {
+   insertRepairDetail(repairPK: String!,errorContent: String!, solution: String!, price: Int): RepairDetail,
+   destroyRepairDetailByPK(pk: String!): Boolean,
+}
+
+extend type Query {
+   getRepairDetailByRepairPK(repairPK: String!): [RepairDetail]
+}

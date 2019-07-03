@@ -1,0 +1,20 @@
+type Notification {
+   id:ID,
+   userPK: String,
+   category: String,
+   content: String,
+   unread: String,
+   status: Int,
+   recordPK: String,
+   createdBy: String,
+   timeCreated: String,
+   timeModified: String,
+}
+
+extend type Mutation {
+   updateUnreadNotiticationByPK(id: Int!): Boolean 
+}
+  
+extend type Query {
+   getByUserPKNotification(userPK: String!): [Notification]
+}

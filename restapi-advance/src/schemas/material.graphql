@@ -1,0 +1,50 @@
+type io {
+   in: Int,
+   out: Int,
+   remain: Int
+}
+
+type Material {
+   id:ID,
+   pk:String,
+   name: String,
+   specifications: String,
+   usingFor: String,
+   usingForDetail: DeviceModel,
+   unit: String,
+   unitDetail: Category,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+   ioDetail: io
+}
+
+input InsertMaterial {
+   name: String!,
+   specifications: String,
+   usingFor: String,
+   unit: String,
+   dataStatus: String
+}
+
+input UpdateMaterial {
+   pk: String!,
+   name: String!,
+   specifications: String,
+   usingFor: String,
+   unit: String,
+   dataStatus: String
+}
+
+extend type Mutation {
+   insertMaterial(input: InsertMaterial!): Material,
+   updateMaterialByPK(input: UpdateMaterial): Material,
+   deleteMaterialByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllMaterial: [Material],
+   getByPKMaterial(pk: String!): Material,
+   getByDataStatusMaterial(dataStatus: String!): [Material],
+   searchMaterial(usingFor: String):[Material]
+}

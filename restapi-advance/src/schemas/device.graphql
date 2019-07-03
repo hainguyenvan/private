@@ -1,0 +1,31 @@
+type Device {
+   id:ID,
+   pk:String,
+   serial: String,
+   modelPK: String,
+   healthStatus: String,
+   importDate: Int,
+   guaranteeExpiredDate: Int,
+   manufactureGuaranteeDate: Int,
+   manufactureDate: Int,
+   status: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+   customerPK: String,
+   customerDetail: Customer,
+   modelDetail: DeviceModel
+}
+
+extend type Mutation {
+   insertDevice(serial: String!,status: String!, modelPK: String!, healthStatus: String!, importDate: Int, guaranteeExpiredDate: Int, manufactureDate: Int, manufactureGuaranteeDate: Int,customerPK:String): Device,
+   updateDeviceByPK(pk: String!,serial: String!,status: String!, modelPK: String!, healthStatus: String!, importDate: Int, guaranteeExpiredDate: Int, manufactureDate: Int, manufactureGuaranteeDate: Int, dataStatus: String, customerPK:String): Device,
+   deleteDeviceByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllDevice: [Device],
+   getByPKDevice(pk: String!): Device,
+   getByDataStatusDevice(dataStatus: String!): [Device],
+   searchDevice(customerPK: String, status: String): [Device]
+}

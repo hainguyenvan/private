@@ -1,0 +1,28 @@
+type Agent {
+   id:ID,
+   pk:String,
+   name: String,
+   address: String,
+   place: String,
+   contactPhone: String,
+   contactPerson: String,
+   contactEmail: String,
+   contactTitle: String,
+   regionPK: String,
+   dataStatus: String,
+   timeCreated: String,
+   timeModified: String,
+   regionDetail: Category
+}
+
+extend type Mutation {
+   insertAgent(name: String!, address: String, place: String, contactPhone: String, contactPerson: String, contactEmail: String, contactTitle: String, regionPK: String): Agent,
+   updateAgentByPK(pk: String!,name: String!, address: String, place: String, contactPhone: String, contactPerson: String, contactEmail: String, contactTitle: String, regionPK: String, dataStatus: String): Agent,
+   deleteAgentByPK(pk: String!): Boolean
+}
+
+extend type Query {
+   getAllAgent: [Agent],
+   getByPKAgent(pk: String!): Agent,
+   getByDataStatusAgent(dataStatus: String!): [Agent]
+}
