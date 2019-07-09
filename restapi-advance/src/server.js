@@ -3,9 +3,9 @@ const cors = require('cors');
 const express = require('express');
 
 // const Middlewares = require('./middlewares/root');
-// const getErrorCode = require('./utils/errors');
+const getErrorCode = require('./utils/errors');
 const Config = require('./config/config');
-// const GraphqlSchema = require('./graphql-schema');
+const GraphqlSchema = require('./graphql/server/graphql-schema');
 
 const port = Config.PORT_SEVER;
 const app = express();
@@ -26,20 +26,20 @@ const rootRouter = require('./routes/root');
 app.use('/api', rootRouter);
 
 
-// app.use('/vietmed', Middlewares.middlewaresList, (req, res) => graphqlExpress({
-//     schema: GraphqlSchema,
-//     context: req,
-//     formatError: (errorType) => {
-//         let error = getErrorCode(errorType.message);
-//         return (error);
-//     },
-//     formatResponse: response => {
-//         response.status = 200;
-//         return response;
-//     },
-// })(req, res));
-// // app.use('/graphql', graphqlExpress({ GraphqlSchema }));
-// app.use('/graphiql', graphiqlExpress({ endpointURL: '/vietmed' }));
+app.use('/graphql', (req, res) => graphqlExpress({
+    schema: GraphqlSchema,
+    context: req,
+    formatError: (errorType) => {
+        let error = getErrorCode(errorType.message);
+        return (error);
+    },
+    formatResponse: response => {
+        response.status = 200;
+        return response;
+    },
+})(req, res));
+// app.use('/api', graphqlExpress({ GraphqlSchema }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.listen(
     port, () => {

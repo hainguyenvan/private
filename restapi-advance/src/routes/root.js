@@ -3,7 +3,7 @@ const router = express.Router();
 
 // root
 router.get('/', function(req, res) {
-    res.json({
+    res.send({
         msg: 'Welcome to our api !'
     });
 });

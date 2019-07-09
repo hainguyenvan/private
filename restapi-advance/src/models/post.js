@@ -38,6 +38,19 @@ class PostModel {
         })
     }
 
+    getAll() {
+        return new Promise((fulfill, reject) => {
+            let sql = `SELECT * FROM Post`
+            this.sequelize.query(sql, {
+                type: this.sequelize.QueryTypes.SELECT
+            }).then(dataList => {
+                fulfill(dataList);
+            }).catch(err => {
+                reject(err)
+            })
+        });
+    }
+
 }
 
 module.exports = new PostModel();

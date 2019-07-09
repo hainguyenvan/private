@@ -41,6 +41,35 @@ class AccountModel {
                 })
         })
     }
+
+    getAll() {
+        return new Promise((fulfill, reject) => {
+            let sql = `SELECT * FROM Account`;
+            this.sequelize.query(sql, {
+                type: this.sequelize.QueryTypes.SELECT
+            }).then(dataList => {
+                fulfill(dataList);
+            }).catch(err => {
+                reject(err)
+            })
+        });
+    }
+
+    getByID(id) {
+        return new Promise((fulfill, reject) => {
+            let sql = `SELECT * FROM Account where id = ${id}`;
+            this.sequelize.query(sql, {
+                type: this.sequelize.QueryTypes.SELECT
+            }).then(dataList => {
+                if (dataList.length === 0) {
+                    fulfill({});
+                }
+                fulfill(dataList[0]);
+            }).catch(err => {
+                reject(err)
+            })
+        });
+    }
 }
 
 module.exports = new AccountModel();

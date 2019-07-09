@@ -33,6 +33,20 @@ class RoleModel {
                 })
         })
     }
+
+    getRoleByAccountID(accountID) {
+        return new Promise((fulfill, reject) => {
+            let sql = `select * from Role
+            inner join (select userID, roleID from UserRole where UserRole.userID = ${accountID} ) UserRole on UserRole.roleID = Role.id`
+            this.sequelize.query(sql, {
+                type: this.sequelize.QueryTypes.SELECT
+            }).then(dataList => {
+                fulfill(dataList);
+            }).catch(err => {
+                reject(err)
+            })
+        });
+    }
 }
 
 module.exports = new RoleModel();
