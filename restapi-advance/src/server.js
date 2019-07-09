@@ -2,10 +2,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 
-const Middlewares = require('./middlewares/root');
-const getErrorCode = require('./utils/errors');
+// const Middlewares = require('./middlewares/root');
+// const getErrorCode = require('./utils/errors');
 const Config = require('./config/config');
-const GraphqlSchema = require('./graphql-schema');
+// const GraphqlSchema = require('./graphql-schema');
 
 const port = Config.PORT_SEVER;
 const app = express();
@@ -42,7 +42,7 @@ app.use('/api', rootRouter);
 // app.use('/graphiql', graphiqlExpress({ endpointURL: '/vietmed' }));
 
 app.listen(
-    port, () => console.info(
-        `Server started on port ${port}`
-    )
+    port, () => {
+        console.log(`Server started on port: ${port}`);
+    }
 );

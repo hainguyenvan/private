@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  # mysql
+  mysql:
+    image: mysql:5.7.21
+    volumes_from:
+      - mysql-data
+    ports:
+      - "3306:3306"
+    container_name: "mysql-app-restapi"
+    environment:
+      MYSQL_ROOT_PASSWORD: pwd
+ 
+  # mysql data
+  mysql-data:
+    image: mysql:5.7.21
+    container_name: "mysql-data-app-restapi"
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+    command: "true"
+  
+  # phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: "phpmyadmin-app-restapi"
+    ports:
+      - 8084:80
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql

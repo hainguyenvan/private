@@ -3,26 +3,30 @@ const Sequelize = require('sequelize');
 const Connect = require('../database/connect');
 const Constant = require('../config/constant');
 
-class UserRoleModel {
+class AccountModel {
     constructor() {
         this.sequelize = Connect.sequelize;
-        this.model = this.sequelize.define('UserRole', {
+        this.model = this.sequelize.define('Account', {
             id: {
                 field: 'id',
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
-            userID: {
-                field: 'userID',
+            name: {
+                field: 'name',
                 type: Sequelize.STRING,
             },
-            roleID: {
-                field: 'roleID',
-                type: Sequelize.STRING,
+            age: {
+                field: 'age',
+                type: Sequelize.STRING
+            },
+            address: {
+                field: 'address',
+                type: Sequelize.STRING
             }
         }, {
-            tableName: 'UserRole'
+            tableName: 'Account'
         });
     }
 
@@ -39,4 +43,4 @@ class UserRoleModel {
     }
 }
 
-module.exports = new UserRoleModel();
+module.exports = new AccountModel();

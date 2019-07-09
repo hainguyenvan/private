@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var Config = require('./config/config');
+var Config = require('../config/config');
 
 class ConnectDB {
     constructor() {
