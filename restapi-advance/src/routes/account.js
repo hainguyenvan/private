@@ -12,4 +12,6 @@ module.exports = function(router) {
             address: Joi.string().required(),
         }
     }), AccountController.insert);
+
+    router.route('/account/getAll').post(AccountController.getAll);
 }

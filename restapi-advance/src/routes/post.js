@@ -11,4 +11,6 @@ module.exports = function(router) {
             author: Joi.number().required(),
         }
     }), PostController.insert);
+
+    router.route('/post/getAll').post(PostController.getAll);
 }

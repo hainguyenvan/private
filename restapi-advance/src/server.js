@@ -5,7 +5,7 @@ const express = require('express');
 // const Middlewares = require('./middlewares/root');
 const getErrorCode = require('./utils/errors');
 const Config = require('./config/config');
-const GraphqlSchema = require('./graphql/server/graphql-schema');
+const GraphqlSchema = require('./graphql/graphql-schema');
 
 const port = Config.PORT_SEVER;
 const app = express();
@@ -26,7 +26,7 @@ const rootRouter = require('./routes/root');
 app.use('/api', rootRouter);
 
 
-app.use('/graphql', (req, res) => graphqlExpress({
+app.use('/api/graphql', (req, res) => graphqlExpress({
     schema: GraphqlSchema,
     context: req,
     formatError: (errorType) => {
@@ -39,7 +39,7 @@ app.use('/graphql', (req, res) => graphqlExpress({
     },
 })(req, res));
 // app.use('/api', graphqlExpress({ GraphqlSchema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/api/graphql' }));
 
 app.listen(
     port, () => {
