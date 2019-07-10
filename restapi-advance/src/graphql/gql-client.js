@@ -6,7 +6,7 @@ class GQLClient {
     constructor() {
         this.graphQLClient = new GraphQLClient(Config.GRAPHQL_API, {
             headers: {
-                authorization: 'Bearer MY_TOKEN',
+                api_key: Config.API_KEY_GRAPHQL,
             },
         })
     }

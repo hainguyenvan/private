@@ -2,7 +2,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 
+// middlewares
 // const Middlewares = require('./middlewares/root');
+const { isAPIKeyGraphQL } = require('./middlewares/graphql');
+
+
 const getErrorCode = require('./utils/errors');
 const Config = require('./config/config');
 const GraphqlSchema = require('./graphql/graphql-schema');
@@ -26,7 +30,7 @@ const rootRouter = require('./routes/root');
 app.use('/api', rootRouter);
 
 
-app.use('/api/graphql', (req, res) => graphqlExpress({
+app.use('/api/graphql', isAPIKeyGraphQL, (req, res) => graphqlExpress({
     schema: GraphqlSchema,
     context: req,
     formatError: (errorType) => {
