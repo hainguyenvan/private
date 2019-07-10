@@ -14,4 +14,10 @@ module.exports = function(router) {
     }), AccountController.insert);
 
     router.route('/account/getAll').post(AccountController.getAll);
+
+    router.route('/account/getByID').post(validate({
+        body: {
+            id: Joi.number().required(),
+        }
+    }), AccountController.getByID);
 }
