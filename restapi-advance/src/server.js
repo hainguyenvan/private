@@ -5,6 +5,7 @@ const express = require('express');
 // middlewares
 // const Middlewares = require('./middlewares/root');
 const { isAPIKeyGraphQL } = require('./middlewares/graphql');
+const { authAPI } = require('./middlewares/auth-api');
 
 
 const getErrorCode = require('./utils/errors');
@@ -23,11 +24,11 @@ app.use(cors(), bodyParser.json());
 const { graphiqlExpress, graphqlExpress } = require('apollo-server-express');
 
 // set static folder
-app.use('/api/files', express.static('src/public'));
+app.use('/api/v1/files', express.static('src/public'));
 
 // import router
 const rootRouter = require('./routes/root');
-app.use('/api', rootRouter);
+app.use('/api/v1', authAPI, rootRouter);
 
 
 app.use('/api/graphql', isAPIKeyGraphQL, (req, res) => graphqlExpress({
