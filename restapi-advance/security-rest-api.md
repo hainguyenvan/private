@@ -12,6 +12,7 @@
     * Nếu để mất public key, hacker cũng không thể  biết được quy tắc hash và từ đó cũng không thể gọi được api.
 
 ## Implements
+* Chạy file rsa/rsa.js để tạo public key, private key, public key sẽ gửi đến client
 * Install
 ```
 crypto
