@@ -1,0 +1,5 @@
+djangorestframework==3.10.2
+graphene-django==2.4.0
+mysqlclient==1.4.4
+PyJWT==1.7.1
+requests==2.22.0
