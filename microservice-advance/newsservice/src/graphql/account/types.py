@@ -5,19 +5,19 @@ from ..common.types import PaginationType
 from ...apps.account.models import AccountModel
 
 
-class AccountType(DjangoObjectType):
+class AccountNewsType(DjangoObjectType):
     class Meta:
         model = AccountModel
 
 
-class AccountListType(graphene.ObjectType):
+class AccountNewsListType(graphene.ObjectType):
     status = graphene.Int()
     msg = graphene.String()
     pagination = graphene.Field(PaginationType)
-    accounts = graphene.List(AccountType)
+    accounts = graphene.List(AccountNewsType)
 
 
-class AccountObjectType(graphene.ObjectType):
+class AccountNewsObjectType(graphene.ObjectType):
     status = graphene.Int()
     msg = graphene.String()
-    account = graphene.Field(AccountType)
+    account = graphene.Field(AccountNewsType)

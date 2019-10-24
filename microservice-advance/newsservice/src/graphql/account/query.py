@@ -3,16 +3,16 @@ from graphene_django import DjangoObjectType
 from django.core.paginator import Paginator
 
 from ...apps.account.models import AccountModel
-from .types import (AccountObjectType, AccountListType)
+from .types import (AccountNewsObjectType, AccountNewsListType)
 from ...conf.http_res import HTTP_RES
 from ...conf.constant import Constant
 
 
 class Query(graphene.ObjectType):
 
-    get_all_accounts = graphene.Field(AccountListType)
+    get_all_accounts_news = graphene.Field(AccountNewsListType)
 
-    def resolve_get_all_accounts(self, info):
+    def resolve_get_all_accounts_news(self, info):
         try:
             accounts = AccountModel.objects.all()
             res = {
