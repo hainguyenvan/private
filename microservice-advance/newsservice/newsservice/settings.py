@@ -37,6 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # install graphql
+    'graphene_django',
+
+    # app
+    'src.apps.account',
+    'src.apps.category',
+    'src.apps.post'
 ]
 
 MIDDLEWARE = [
@@ -112,6 +120,15 @@ DATABASES = {
         'PORT': get_db_port(),
         'OPTIONS': {'charset': 'utf8mb4'}
     }
+}
+
+
+# import graphql
+GRAPHENE = {
+    'SCHEMA': 'src.graphql.schema.schema',
+    # 'MIDDLEWARE': [
+    #     'src.middlewares.auth.check_permission',
+    # ]
 }
 
 
