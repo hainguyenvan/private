@@ -35,7 +35,8 @@ class Query(graphene.ObjectType):
             # succcessfuly
             acc_detail = acc.account_detail
             payload_token = {
-                'accountInfoID': str(acc_detail.id)
+                'accountInfoID': str(acc_detail.id),
+                'isSuperuser': acc.is_superuser
             }
             # generate token
             token = AuthToken.generate_jwt_token(payload_token)

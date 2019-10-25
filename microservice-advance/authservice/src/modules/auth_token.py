@@ -18,16 +18,16 @@ class AuthToken:
         # set exp token is  24h
         payload['exp'] = datetime.datetime.utcnow() + \
             datetime.timedelta(seconds=86400)
-        api_key = jwt.encode(payload,
-                             SECRET.SECRET_TOKEN_KEY, algorithm='HS256')
-        return api_key
+        token = jwt.encode(payload,
+                           SECRET.SECRET_TOKEN_KEY, algorithm='HS256')
+        return token
 
-    def decode_jwt_token():
-        if api_key == '':
+    def decode_jwt_token(token=''):
+        if token == '':
             return None
         try:
             decode = jwt.decode(
-                api_key, SECRET.SECRET_TOKEN_KEY, algorithms=['HS256'])
+                token, SECRET.SECRET_TOKEN_KEY, algorithms=['HS256'])
             return decode
         except:
             return None
