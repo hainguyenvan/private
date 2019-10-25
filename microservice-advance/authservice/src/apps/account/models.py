@@ -26,6 +26,8 @@ class AccountModel(models.Model):
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
+    account_detail = models.OneToOneField(
+        AccountInfoModel, on_delete=models.CASCADE, related_name="account_detail", unique=True)
     roles = models.ManyToManyField(
         RoleModel, blank=True, related_name="role_account")
 
@@ -39,10 +41,13 @@ class AccountModel(models.Model):
         AccountInfoModel, on_delete=models.CASCADE, editable=False, null=True, related_name="modified_by_account")
 
     def __str__(self):
-        return self.email
+        return self.username
 
     # custom method save
     def save(self, *args, **kwargs):
+        if self.password != None:
+            pwd = make_password(self.password)
+        self.password = pwd
         self.time_modified = calendar.timegm(time.gmtime())
         if self._state.adding is True:
             self.time_created = calendar.timegm(time.gmtime())

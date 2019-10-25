@@ -21,3 +21,16 @@ class AccountObjectType(graphene.ObjectType):
     status = graphene.Int()
     msg = graphene.String()
     account = graphene.Field(AccountType)
+
+
+# type sign in
+class SignInType(graphene.ObjectType):
+    account_info_id = graphene.String()
+    token = graphene.String()
+
+
+class SignInObjectType(graphene.ObjectType):
+    status = graphene.Int()
+    msg = graphene.String()
+    account = graphene.Field(SignInType)
+# end type sign in
