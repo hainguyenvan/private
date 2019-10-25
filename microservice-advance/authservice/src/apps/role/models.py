@@ -7,7 +7,7 @@ import uuid
 
 from django.db import models
 
-from ..account.models import AccountModel
+from ..accountinfo.models import AccountInfoModel
 from ..permission.models import PermissionModel
 
 
@@ -24,9 +24,9 @@ class RoleModel(models.Model):
     time_modified = models.BigIntegerField(
         default=calendar.timegm(time.gmtime()), editable=False, blank=True)
     created_by = models.ForeignKey(
-        AccountModel, on_delete=models.CASCADE, editable=False, null=True, related_name="created_by_role")
+        AccountInfoModel, on_delete=models.CASCADE, editable=False, null=True, related_name="created_by_role")
     modified_by = models.ForeignKey(
-        AccountModel, on_delete=models.CASCADE, editable=False, null=True, related_name="modified_by_role")
+        AccountInfoModel, on_delete=models.CASCADE, editable=False, null=True, related_name="modified_by_role")
 
     def __str__(self):
         return self.name
