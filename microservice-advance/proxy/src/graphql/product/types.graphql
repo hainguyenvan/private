@@ -1,3 +1,0 @@
-extend type PostType {
-    accountInfo: String
-}
