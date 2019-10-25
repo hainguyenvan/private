@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'graphene_django',
 
     # app
-    'src.apps.account'
+    'src.apps.account',
+    'src.apps.permission'
 ]
 
 MIDDLEWARE = [
