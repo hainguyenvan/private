@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # app
     'src.apps.account',
+    'src.apps.role',
     'src.apps.permission'
 ]
 
