@@ -1,11 +1,21 @@
+const AccountService = require('../../auth-service/account/service');
+
 const PostType = {
     async accountInfo(root, args, context, info) {
-        console.log(context);
-        const id1 = '5e9f9852-3bb0-4ed1-a4f4-812dbbb49ebd';
-        // const { id } = await context.getAccountsById(id1);
-        console.log('fuck: ', context);
-        console.log('test=====================');
-        return 'Test 101';
+        if (root.createdBy === undefined || root.createdBy === null) {
+            return null;
+        }
+
+        const createdBy = root.createdBy.id;
+        const apiKey = 'test101';
+        return AccountService.getByID(createdBy, apiKey)
+            .then(acc => {
+                return acc;
+            })
+            .catch(err => {
+                console.log(err);
+                return null;
+            });
     },
 };
 
