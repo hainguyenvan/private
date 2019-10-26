@@ -128,9 +128,9 @@ DATABASES = {
 # import graphql
 GRAPHENE = {
     'SCHEMA': 'src.graphql.schema.schema',
-    # 'MIDDLEWARE': [
-    #     'src.middlewares.auth.check_permission',
-    # ]
+    'MIDDLEWARE': [
+        'src.middlewares.main.main_middleware',
+    ]
 }
 
 
@@ -171,3 +171,40 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# config logging
+SITE_ROOT = os.path.abspath(os.path.dirname(__name__))
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': SITE_ROOT + "/logs/logger.log",
+            # max 5mb
+            'maxBytes': 5000000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        # 'django': {
+        #     'handlers': ['file'],
+        #     'level': 'DEBUG',
+        #     'propagate': True,
+        # },
+        'logger': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
+    }
+}
