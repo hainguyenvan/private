@@ -5,7 +5,8 @@ from ..apps.account.dao import AccountDAO
 
 WHITE_LIST = {
     '__schema',
-    'signIn'
+    'signIn',
+    'validateToken'
 }
 
 BLACK_LIST = {

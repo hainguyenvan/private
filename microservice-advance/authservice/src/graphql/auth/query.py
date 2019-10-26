@@ -1,4 +1,5 @@
 import graphene
+import logging
 from graphene_django import DjangoObjectType
 from django.core.paginator import Paginator
 
@@ -6,7 +7,7 @@ from ...modules.auth_token import AuthToken
 
 from ...apps.account.dao import AccountDAO
 from ...apps.account.models import AccountModel
-from .types import (SignInObjectType)
+from .types import (SignInObjectType, ValidateTokenObjectType)
 from ...conf.http_res import HTTP_RES
 from ...conf.constant import Constant
 
@@ -15,6 +16,25 @@ class Query(graphene.ObjectType):
 
     sign_in = graphene.Field(
         SignInObjectType, username=graphene.String(required=True), password=graphene.String(required=True))
+
+    validate_token = graphene.Field(
+        ValidateTokenObjectType, token=graphene.String(required=True))
+
+    def resolve_validate_token(self, info, token):
+        try:
+            decode_token = AuthToken.decode_jwt_token(token)
+            if decode_token is None:
+                res = HTTP_RES.FORBIDDEN
+                return res
+            res = HTTP_RES.SUCCESSFULY
+            return res
+        except Exception as err:
+            logging.getLogger('logger').error(err)
+            res = {
+                'status': HTTP_RES.CODE_BAD_REQUEST,
+                'msg': err
+            }
+            return res
 
     def resolve_sign_in(self, info, username, password):
         try:
@@ -48,7 +68,6 @@ class Query(graphene.ObjectType):
             }
             return res
         except Exception as err:
-            print(err)
             res = {
                 'status': HTTP_RES.CODE_BAD_REQUEST,
                 'msg': err

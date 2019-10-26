@@ -16,3 +16,9 @@ class SignInObjectType(graphene.ObjectType):
     msg = graphene.String()
     account = graphene.Field(SignInType)
 # end type sign in
+
+
+# validate token
+class ValidateTokenObjectType(graphene.ObjectType):
+    status = graphene.Int()
+    msg = graphene.String()
