@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     # app
     'src.apps.account',
+    'src.apps.role',
+    'src.apps.permission',
     'src.apps.category',
     'src.apps.post'
 ]

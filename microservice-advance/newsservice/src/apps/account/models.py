@@ -4,10 +4,16 @@ import uuid
 
 from django.db import models
 
+from ..role.models import RoleModel
+
 
 class AccountModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=255)
+
+    roles = models.ManyToManyField(
+        RoleModel, blank=True, related_name="role_account")
+
     time_created = models.BigIntegerField(
         default=calendar.timegm(time.gmtime()), editable=False)
     time_modified = models.BigIntegerField(

@@ -2,6 +2,7 @@ import logging
 
 from ..conf.http_res import HTTP_RES
 from ..modules.auth_token import AuthToken
+from .permission import is_permission
 
 WHITE_LIST = {
     '__schema',
@@ -12,7 +13,7 @@ BLACK_LIST = {
 }
 
 
-def validate_auth(next, root, info, **args):
+def main_middleware(next, root, info, **args):
     try:
         func_name = info.path[0]
 
@@ -23,7 +24,7 @@ def validate_auth(next, root, info, **args):
         # root is None (request)
         # root is`t None (response)
         if root == None:
-            # by pass with white list
+            # by pass with white list not header
             if func_name in WHITE_LIST:
                 return next(root, info, **args)
 
@@ -32,9 +33,15 @@ def validate_auth(next, root, info, **args):
                 logging.getLogger('logger').error('xapikey is null')
                 return None
 
+            # validate token
             decode_token = AuthToken.decode_jwt_token(api_key)
             if decode_token is None:
                 logging.getLogger('logger').error('xapikey invalid')
+                return None
+
+            # check permission
+            flag_permission = is_permission(func_name, api_key)
+            if flag_permission == False:
                 return None
 
             # by pass auth

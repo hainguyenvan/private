@@ -127,8 +127,7 @@ DATABASES = {
 GRAPHENE = {
     'SCHEMA': 'src.graphql.schema.schema',
     'MIDDLEWARE': [
-        'src.middlewares.auth.validate_auth',
-        'src.middlewares.permission.validate_permission'
+        'src.middlewares.main.main_middleware'
     ]
 }
 
