@@ -1,7 +1,7 @@
 import logging
 
 from ..conf.http_res import HTTP_RES
-# from ..modules.auth_token import AuthToken
+from ..services.auth.service import AuthService
 from .permission import is_permission
 
 WHITE_LIST = {
@@ -34,10 +34,10 @@ def main_middleware(next, root, info, **args):
                 return None
 
             # validate token
-            # decode_token = AuthToken.decode_jwt_token(api_key)
-            # if decode_token is None:
-            #     logging.getLogger('logger').error('xapikey invalid')
-            #     return None
+            is_token = AuthService.validate_toke(api_key)
+            if is_token == False:
+                logging.getLogger('logger').error('xapikey invalid')
+                return None
 
             # check permission
             flag_permission = is_permission(func_name, api_key)

@@ -6,8 +6,8 @@ def get_api_auth():
         auth = os.environ['API_AUTH']
         return auth
     except KeyError:
-        return 'http://192.168.1.41:8000/api/auth-service/auth-api'
-        # return 'http://localhost:8000/api/auth-service/auth-api'
+        # return 'http://192.168.1.41:8000/api/auth-service/auth-api'
+        return 'http://127.0.0.1:8000/graphql/auth-service'
 
 
 class Constant:
