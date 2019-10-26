@@ -6,12 +6,13 @@ from ..conf.http_res import HTTP_RES
 from ..modules.auth_token import AuthToken
 
 WHITE_LIST = {
+    '__schema',
     'signIn'
 }
 
 BLACK_LIST = {
     # defaul functions of graphql
-    '__schema'
+    # '__schema'
 }
 
 
@@ -42,7 +43,7 @@ def validate_permission(next, root, info, **args):
 
             # check permisison
             is_superuser = decode_token.get('isSuperuser')
-            if is_superuser:
+            if is_superuser == True:
                 return next(root, info, **args)
 
             acc_info_id = decode_token.get('accountInfoID')
@@ -57,5 +58,6 @@ def validate_permission(next, root, info, **args):
 
         return next(root, info, **args)
     except Exception as err:
+        print(err)
         logging.getLogger('logger').error(err)
         return None

@@ -4,12 +4,11 @@ from ..conf.http_res import HTTP_RES
 from ..modules.auth_token import AuthToken
 
 WHITE_LIST = {
+    '__schema',
     'signIn'
 }
 
 BLACK_LIST = {
-    # defaul functions of graphql
-    '__schema'
 }
 
 
@@ -43,5 +42,6 @@ def validate_auth(next, root, info, **args):
 
         return next(root, info, **args)
     except Exception as err:
+        print('err: ', err)
         logging.getLogger('logger').error(err)
         return None
