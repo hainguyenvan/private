@@ -1,5 +1,7 @@
 import logging
 
+from django.contrib.auth.hashers import check_password
+
 from .models import AccountModel
 
 
@@ -15,3 +17,17 @@ class AccountDAO:
         except Exception as err:
             logging.getLogger('logger').error(err)
             return False
+
+    def sign_in(username, pwd):
+        try:
+            acc_data = AccountModel.objects.get(username=username)
+            if acc_data.is_active == False:
+                return None
+            hashed_pwd = acc_data.password
+            check_pwd = check_password(pwd, hashed_pwd)
+            if check_pwd:
+                return acc_data
+
+            return None
+        except Exception as err:
+            return None

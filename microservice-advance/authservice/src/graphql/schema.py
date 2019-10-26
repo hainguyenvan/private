@@ -1,9 +1,10 @@
 import graphene
 
 from .account.schema import accountschema
+from .auth.schema import authschema
 
 
-class Query(accountschema.Query, graphene.ObjectType):
+class Query(authschema.Query, accountschema.Query, graphene.ObjectType):
     pass
 
 
