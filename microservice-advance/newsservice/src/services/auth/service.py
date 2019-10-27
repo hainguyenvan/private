@@ -11,7 +11,7 @@ class AuthService:
             url = Constant.API_AUTH
             query = AuthQuery.get_query_validate_token(token)
             is_token = GraphQLClient.run_query(url, query, token)
-            if is_token is not None:
+            if is_token is not None and is_token.get('data').get('validateToken').get('status') == 200:
                 return True
             return False
         except Exception as err:
