@@ -18,6 +18,12 @@ from django.urls import path
 
 from graphene_django.views import GraphQLView
 
+from src.rabbitmq.rabbitmq_client import RabbitMQClient
+
+# init consume queue of rabbitmq
+rabbitmq_client = RabbitMQClient()
+rabbitmq_client.init_consume()
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 

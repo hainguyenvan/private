@@ -1,11 +1,13 @@
 import calendar
 import time
 import uuid
+import json
 
 from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.core.validators import RegexValidator
 
+from ...rabbitmq.rabbitmq_client import RabbitMQClient
 from ..role.models import RoleModel
 from ..accountinfo.models import AccountInfoModel
 
@@ -52,6 +54,14 @@ class AccountModel(models.Model):
         if self._state.adding is True:
             self.time_created = calendar.timegm(time.gmtime())
         super(AccountModel, self).save(*args, **kwargs)
+
+        # synchron account
+        rabbitmq_client = RabbitMQClient()
+        payload = {
+            'id': str(self.account_detail.id),
+            'name': self.account_detail.email
+        }
+        rabbitmq_client.send_to_queue('account', json.dumps(payload))
 
     class Meta:
         db_table = 'account'
