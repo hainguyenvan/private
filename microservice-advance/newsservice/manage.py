@@ -3,10 +3,16 @@
 import os
 import sys
 
+from src.rabbitmq.rabbitmq_client import RabbitMQClient
+
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'newsservice.settings')
     try:
+        # init consume
+        rabbitmq_client = RabbitMQClient()
+        rabbitmq_client.init_consume()
+
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(

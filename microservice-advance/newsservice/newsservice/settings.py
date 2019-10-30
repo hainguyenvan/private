@@ -88,7 +88,7 @@ def get_db_host():
         return mysql_host
     except Exception:
         # dev
-        return '42.112.31.240'
+        return '192.168.1.41'
         # localhost
         # return '127.0.0.1'
 

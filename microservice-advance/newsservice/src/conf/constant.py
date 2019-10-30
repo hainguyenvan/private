@@ -46,3 +46,8 @@ class Constant:
     RABBITMQ_PASSWORD = get_rabbitmq_password()
 
     ITEMS_PER_PAGE = 10
+
+    # rabbitmq queue
+    QUEUE_NEWS = 'news'
+    TYPE_PAYLOAD_QUEUE_CREATE_ACCOUNT = 'create_account'
+    

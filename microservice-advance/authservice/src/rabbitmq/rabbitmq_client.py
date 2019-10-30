@@ -13,13 +13,11 @@ class RabbitMQClient:
             Constant.RABBITMQ_URL, 5672, '/', credentials)
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
-        self.channel.exchange_declare(
-            exchange='micorservie', exchange_type='fanout')
 
     def send_to_queue(self, queue, payload):
         try:
-            self.channel.queue_declare(queue=queue)
+            self.channel.queue_declare(queue=queue, durable=True)
             self.channel.basic_publish(
-                exchange='micorservie', routing_key=queue, body=payload)
+                exchange='', routing_key=queue, body=payload)
         except Exception as err:
             logging.getLogger('logger').error(err)
