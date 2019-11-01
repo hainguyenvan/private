@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom';
-import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './index.css';
+
 import * as serviceWorker from './serviceWorker';
 
 import rootRoutes from './routes';
