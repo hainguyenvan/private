@@ -1,9 +1,9 @@
-version: '2'
+version: "2"
 
 services:
-  rabbitmq-chat-service:
+  rabbitmq:
     build: .
-    container_name: "rabbitmq-chat-service"
+    container_name: "rabbitmq-microservice-advance"
     # env_file: .env
     # volumes:
     #   - ./logs:/usr/src/app/logs
